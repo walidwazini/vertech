@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 
 import { Header } from '../../../../payload/payload-types'
 import { Gutter } from '../../Gutter'
-import MobileNav from '../MobileNav'
 import { HeaderNav } from '../Nav'
 
 import classes from './index.module.scss'
@@ -25,7 +24,6 @@ const HeaderComponent = ({ header }: { header: Header }) => {
           <img width={170} height={170} src='/logo-white.svg' alt='logo' />
         </Link>
         <HeaderNav header={header} />
-        <MobileNav />
       </Gutter>
     </nav>
   )
