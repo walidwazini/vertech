@@ -1,23 +1,71 @@
-@import "../../../_css/common";
+// @import "../../../_css/common";
 
-.error {
-  color: red;
-  margin-bottom: 15px;
+// .error {
+//   color: red;
+//   margin-bottom: 15px;
+// }
+
+// .formWrapper {
+//   width: 66.66%;
+
+//   @include mid-break {
+//     width: 100%;
+//   }
+// }
+
+// .submit {
+//   margin-top: var(--base);
+// }
+
+// .message {
+//   margin-bottom: var(--base);
+// }
+
+@import '../../../_css/common';
+
+.form {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
 }
 
-.formWrapper {
-  width: 66.66%;
+.subTitle {
+  font-size: 18px;
+  line-height: 24px;
+}
 
-  @include mid-break {
-    width: 100%;
-  }
+.requestSuccess {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.openMailBtn {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
 }
 
 .submit {
-  margin-top: var(--base);
+  width: 100%;
+  background-color: #458d1c;
+  color: whitesmoke;
+}
+
+.submit:hover {
+  background-color: #356917;
+
 }
 
 .message {
   margin-bottom: var(--base);
 }
 
+.error {
+  color: red;
+  margin-bottom: 15px;
+}

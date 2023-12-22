@@ -15,6 +15,10 @@
   background-color: #1d1dff;
 }
 
+.submit:hover {
+  background-color: #3333fc;
+}
+
 .message {
   margin-bottom: var(--base);
 }
@@ -24,4 +28,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+
+.link:hover {
+  color: #9b9bf1;
 }
