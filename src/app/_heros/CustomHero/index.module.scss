@@ -1,18 +1,10 @@
 @import '../../_css/queries.scss';
 
-.test {
-  background-color: aqua;
-  width: 500px;
-  height: 600px;
-  color: white;
-}
-
 .hero {
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
-  // color: white;
 
   @include small-break {
     margin: 0;

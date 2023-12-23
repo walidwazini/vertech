@@ -56,12 +56,14 @@ export default async function Page({ params: { slug = 'home' } }) {
 
   const { hero, layout } = page
 
+  console.log(hero.richText[0].children)
+
   return (
     <React.Fragment>
       {slug === 'home' ? (
-        <Gutter>
+        <section>
           <Hero {...hero} />
-        </Gutter>
+        </section>
       ) : (
         <>
           <Hero {...hero} />
