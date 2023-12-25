@@ -2,11 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 
 import { Category } from '../../../payload/payload-types'
+import CategoryCard from './CategoryCard'
 
 import classes from './index.module.scss'
 
 const Categories = ({ categories }: { categories: Category[] }) => {
-  
+
   return (
     <section className={classes.container}>
       <div className={classes.titleWrapper}>
@@ -15,9 +16,9 @@ const Categories = ({ categories }: { categories: Category[] }) => {
       </div>
 
       <div className={classes.list}>
-        {categories.map(category => {
-          return <p key={category.id} >{category.title}</p>
-        })}
+        {categories.map(cat => (
+          <CategoryCard key={cat.id} category={cat} />
+        ))}
       </div>
     </section>
   )

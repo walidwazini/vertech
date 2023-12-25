@@ -57,8 +57,6 @@ export default async function Page({ params: { slug = 'home' } }) {
 
   const { hero, layout } = page
 
-  console.log(categories)
-
   return (
     <React.Fragment>
       {slug === 'home' ? (
