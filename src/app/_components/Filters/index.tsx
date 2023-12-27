@@ -2,14 +2,17 @@
 
 import React from 'react'
 
-import classes from './index.module.scss'
 import { useFilter } from '../../_providers/Filter'
 import { HR } from '../HR'
 import { Category } from '../../../payload/payload-types'
-import { Checkbox } from 'payload/components/forms'
+import { Checkbox } from '../Checkbox'
+
+import classes from './index.module.scss'
 
 const Filters = ({ categories }: { categories: Category[] }) => {
   const { categoryFilters, sort, setCategoryFilters, setSort } = useFilter()
+
+  const handleCategories = () => {}
 
   return (
     <div className={classes.filters}>
@@ -17,19 +20,12 @@ const Filters = ({ categories }: { categories: Category[] }) => {
         <h6 className={classes.title}>Product Categories</h6>
         <div className={classes.categories}>
           {categories.map((cat: Category) => {
-            const isSelected = false
-
+            const isSelected = categoryFilters.includes(cat.id)
             return (
-              // TODO make custom checkbox
-              <label>
-                <input type='checkbox' key={cat.id} value={cat.id} aria-label={cat.id} />
-                {cat.title}
-              </label>
-              // <Checkbox
-              //   key={cat.id}
-              //   label={cat.title}
-              //   name={cat.title}
-              // />
+              <Checkbox
+              key={cat.id} label={cat.title} value={cat.id}
+              isSelected={isSelected} onClickHandler={handleCategories}
+              />
             )
           })}
         </div>
