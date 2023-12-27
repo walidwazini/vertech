@@ -11,6 +11,7 @@ import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
 import classes from './index.module.scss'
+import { useFilter } from '../../_providers/Filter'
 
 type Result = {
   docs: Product[]
@@ -38,8 +39,9 @@ export type Props = {
 }
 
 export const CollectionArchive: React.FC<Props> = props => {
+  const { categoryFilters, sort } = useFilter()
   const {
-    categories: catsFromProps,
+    // categories: catsFromProps,
     className,
     limit = 10,
     onResultChange,
@@ -49,22 +51,18 @@ export const CollectionArchive: React.FC<Props> = props => {
     relationTo,
     selectedDocs,
     showPageRange,
-    sort = '-createdAt',
+    // sort = '-createdAt',
   } = props
 
   const [results, setResults] = useState<Result>({
-    docs: (populateBy === 'collection'
-      ? populatedDocs
-      : populateBy === 'selection'
-      ? selectedDocs
-      : []
-    )?.map(doc => doc.value),
+    totalDocs: typeof populatedDocsTotal === 'number' ? populatedDocsTotal : 0,
+    // docs: (populateBy === 'collection' ? populatedDocs : populateBy === 'selection' ? selectedDocs : [])?.map(doc => doc.value),
+    docs: populatedDocs?.map((doc: any) => doc.value) || [],
     hasNextPage: false,
     hasPrevPage: false,
     nextPage: 1,
     page: 1,
     prevPage: 1,
-    totalDocs: typeof populatedDocsTotal === 'number' ? populatedDocsTotal : 0,
     totalPages: 1,
   })
 
@@ -75,7 +73,7 @@ export const CollectionArchive: React.FC<Props> = props => {
   const isRequesting = useRef(false)
   const [page, setPage] = useState(1)
 
-  const categories = (catsFromProps || []).map(cat => cat.id).join(',')
+  // const categories = (catsFromProps || []).map((cat: any) => cat.id).join(',')
 
   const scrollToRef = useCallback(() => {
     const { current } = scrollRef
@@ -114,12 +112,13 @@ export const CollectionArchive: React.FC<Props> = props => {
           page,
           sort,
           where: {
-            ...(categories
+            // ...(categories
+            ...(categoryFilters && categoryFilters.length > 0
               ? {
-                  categories: {
-                    in: categories,
-                  },
-                }
+                categories: {
+                  in: typeof categoryFilters === 'string' ? [categoryFilters] : categoryFilters.map((cat: string) => cat).join(','),
+                },
+              }
               : {}),
           },
         },
@@ -160,7 +159,7 @@ export const CollectionArchive: React.FC<Props> = props => {
     return () => {
       if (timer) clearTimeout(timer)
     }
-  }, [page, categories, relationTo, onResultChange, sort, limit, populateBy])
+  }, [page, categoryFilters, relationTo, onResultChange, sort, limit, populateBy])
 
   return (
     <div className={[classes.collectionArchive, className].filter(Boolean).join(' ')}>
